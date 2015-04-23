@@ -1,0 +1,12 @@
+{
+  "name": "Electron-KitchenSink",
+  "version": "0.0.1",
+  "main": "application.js",
+  "window": {
+    "width": 800,
+    "height": 600,
+    "frame": true
+  },
+  "dependencies": {
+  }
+}
