@@ -7,6 +7,7 @@ requirejs.config({
     'backbone': 'lib/js/backbone',
     'bootstrap': 'lib/js/bootstrap.min',
     'handlebars': 'lib/js/handlebars.min',
+    'marked': 'lib/js/marked.min',
     'app': 'browser/app'
   },
 

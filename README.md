@@ -26,24 +26,24 @@ $ gulp run
 ## Directory Structure
 
 ```text
-Electron-KitchenSink/
-└── build
-    └── css
-    ├── font
-    └── lib
-        └── css
-        └── js
-    └── browser
-    ├── app.js
-    └── loader.js
-├── bower_components
-└── src
-    └── appinfo
-    ├── backend
-    ├── html
-    ├── sass
-    ├── tools
-    └── webapp
+Electron-KitchenSink
+├── build
+│   ├── css
+│   ├── font
+│   ├── lib
+│   │   ├── css
+│   │   └── js
+│   ├── browser
+│   ├── app.js
+│   └── loader.js
+├── bower_components -> build/lib/
+├── src
+│   ├── appinfo -> build/
+│   ├── backend -> build/
+│   ├── html    -> build/
+│   ├── sass    -> build/css
+│   ├── tools
+│   └── webapp  -> build/browser
 ├── test
 └── Gulpfile.coffee
 ```

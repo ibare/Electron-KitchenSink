@@ -12,6 +12,7 @@ config =
       html: 'src/html',
       sass: 'src/sass',
       asset: 'src/asset',
+      contents: 'src/contents',
       appinfo: 'src/appinfo',
       backend: 'src/backend',
       webapp: 'src/webapp'
@@ -25,11 +26,13 @@ config =
         html: 'build/',
         css: 'build/css',
         js: 'build/js',
-        fonts: 'build/fonts'
+        fonts: 'build/fonts',
+        contents: 'build/contents'
 
 fullpath =
   sass: path.join(config.path.source.sass, '**/*.scss'),
   html: path.join(config.path.source.html, '**/*.html'),
+  contents: path.join(config.path.source.contents, '**/*.md'),
   app:
     backend: path.join(config.path.source.backend, '**/*.js'),
     web: path.join(config.path.source.webapp, '**/*.js')
@@ -43,10 +46,12 @@ gulp.task 'deploy-library-files', ->
   gulp.src [
         path.join(config.path.source.bower, 'requirejs/require.js'),
         path.join(config.path.source.bower, 'jquery/dist/jquery.min.js'),
+        path.join(config.path.source.bower, 'jquery/dist/jquery.min.map'),
         path.join(config.path.source.bower, 'underscore/underscore.js'),
         path.join(config.path.source.bower, 'backbone/backbone.js'),
         path.join(config.path.source.bower, 'bootstrap/dist/js/bootstrap.min.js'),
-        path.join(config.path.source.bower, 'handlebars/handlebars.min.js')
+        path.join(config.path.source.bower, 'handlebars/handlebars.min.js'),
+        path.join(config.path.source.bower, 'marked/marked.min.js')
       ]
     .pipe gulp.dest config.path.target.library.js
 
@@ -62,6 +67,8 @@ gulp.task 'deploy-library-files', ->
 gulp.task 'deploy-static-files', ->
   gulp.src [fullpath.html]
     .pipe gulp.dest config.path.target.root
+  gulp.src [fullpath.contents]
+    .pipe gulp.dest config.path.target.static.contents
 
 gulp.task 'deploy-appinfo', ->
   gulp.src path.join config.path.source.appinfo, 'package.json'
