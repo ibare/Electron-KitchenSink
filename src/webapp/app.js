@@ -18,8 +18,18 @@ define([
       //     return Highlight.highlightAuto(code).value;
       //   }
       // });
+      this.current = null;
 
       Backbone.history.start();
+    },
+
+    toogleMenu: function(contents) {
+      if(this.current != null) {
+        this.current.parentNode.removeAttribute('class');
+      }
+
+      this.current = Backbone.$('a[href="#docs/'+contents+'"]')[0];
+      this.current.parentNode.className = 'active';
     },
 
     contentsLoader: function(contents) {
@@ -37,6 +47,7 @@ define([
     },
 
     contentsHandler: function(contents) {
+      this.toogleMenu(contents);
       this.contentsLoader(contents).done(this.contentsRenderer);
     },
 
@@ -46,7 +57,8 @@ define([
 
     defaultHandler: function(action) {
       if(!action) {
-        this.contentsLoader(DEFAULTCONTENTS).done(this.contentsRenderer);;
+        this.contentsLoader(DEFAULTCONTENTS).done(this.contentsRenderer);
+        this.toogleMenu(DEFAULTCONTENTS);
       }
     }
   });
