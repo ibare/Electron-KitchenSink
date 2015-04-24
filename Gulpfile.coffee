@@ -13,9 +13,11 @@ config =
       sass: 'src/sass',
       asset: 'src/asset',
       appinfo: 'src/appinfo',
-      backend: 'src/backend'
+      backend: 'src/backend',
+      webapp: 'src/webapp'
     target:
       root: 'build',
+      webapp: 'build/browser',
       library:
         js: 'build/lib/js',
         css: 'build/lib/css'
@@ -27,7 +29,10 @@ config =
 
 fullpath =
   sass: path.join(config.path.source.sass, '**/*.scss'),
-  html: path.join(config.path.source.html, '**/*.html')
+  html: path.join(config.path.source.html, '**/*.html'),
+  app:
+    backend: path.join(config.path.source.backend, '**/*.js'),
+    web: path.join(config.path.source.webapp, '**/*.js')
 
 gulp.task 'compile-sass', ->
   gulp.src fullpath.sass
@@ -66,15 +71,22 @@ gulp.task 'deploy-backend', ->
   gulp.src path.join config.path.source.backend, '**/*.js'
     .pipe gulp.dest config.path.target.root
 
+gulp.task 'deploy-webapp', ->
+  gulp.src path.join config.path.source.webapp, '**/*.js'
+    .pipe gulp.dest config.path.target.webapp
+
 gulp.task 'watch', ->
   gulp.watch fullpath.sass, -> gulp.start 'compile-sass'
   gulp.watch fullpath.html, -> gulp.start 'deploy-static-files'
+  gulp.watch fullpath.app.backend, -> gulp.start 'deploy-backend'
+  gulp.watch fullpath.app.web, -> gulp.start 'deploy-webapp'
 
 gulp.task 'build', ->
   gulp.start [
     'deploy-appinfo',
     'deploy-static-files',
     'deploy-backend',
+    'deploy-webapp',
     'compile-sass',
     'deploy-library-files'
   ]

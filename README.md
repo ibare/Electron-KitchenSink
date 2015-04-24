@@ -14,6 +14,11 @@ $ npm install -g electron-prebuilt
 ```bash
 $ npm install
 $ bower install
+```
+
+## Build & Run
+
+```bash
 $ gulp build
 $ gulp run
 ```
@@ -22,24 +27,24 @@ $ gulp run
 
 ```text
 Electron-KitchenSink/
-├── build
+└── build
     └── css
-    └── font
+    ├── font
     └── lib
         └── css
         └── js
     └── browser
-    └── app.js
+    ├── app.js
     └── loader.js
 ├── bower_components
-├── src
+└── src
     └── appinfo
-    └── backend
-    └── html
-    └── sass
-    └── tools
+    ├── backend
+    ├── html
+    ├── sass
+    ├── tools
     └── webapp
-└── test
+├── test
 └── Gulpfile.coffee
 ```
 

@@ -1,26 +1,19 @@
 requirejs.config({
-  baseUrl: 'browser',
+  baseUrl: './',
+
+  paths: {
+    'jquery': 'lib/js/jquery.min',
+    'underscore': 'lib/js/underscore',
+    'backbone': 'lib/js/backbone',
+    'bootstrap': 'lib/js/bootstrap.min',
+    'handlebars': 'lib/js/handlebars.min',
+    'app': 'browser/app'
+  },
 
   shim: {
-    'lib/js/jquery.min': {
-      exports: '$'
-    },
-
-    'lib/js/underscore': {
-      exports: '_'
-    },
-
-    'lib/js/backbone': {
-      deps: ['lib/js/underscore'],
-      exports: 'Babckbone'
-    },
-
-    app: {
-      deps: [
-        'lib/js/jquery.min',
-        'lib/js/underscore',
-        'lib/js/backbone'
-      ]
+    'bootstrap': ['jquery'],
+    'app': {
+      deps: ['jquery', 'backbone']
     }
   }
 });
