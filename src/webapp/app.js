@@ -1,6 +1,10 @@
 define([
-  'lib/js/marked.min'
-], function(Marked) {
+  'lib/js/marked.min',
+  'lib/js/nprogress'
+], function(Marked, Nprogress) {
+  var DEFAULTCONTENTS = 'synopsis';
+  var ipc = require('ipc');
+
   return Backbone.Router.extend({
     routes: {
       'docs/:contents': 'contentsHandler',
@@ -9,23 +13,41 @@ define([
     },
 
     initialize: function() {
+      // Marked.setOptions({
+      //   highlight: function (code) {
+      //     return Highlight.highlightAuto(code).value;
+      //   }
+      // });
+
       Backbone.history.start();
     },
 
-    contentsHandler: function(contents) {
-      Backbone.ajax({
-        url: 'contents/'+contents+'.md'
-      }).done(function(doc) {
-        Backbone.$('.main')[0].innerHTML = Marked(doc);
+    contentsLoader: function(contents) {
+      return Backbone.ajax({
+        url: 'contents/'+contents+'.md',
+        beforeSend: function(xhr) {
+          Nprogress.start();
+        }
       });
     },
 
+    contentsRenderer: function(doc) {
+      Backbone.$('.main')[0].innerHTML = Marked(doc);
+      Nprogress.done();
+    },
+
+    contentsHandler: function(contents) {
+      this.contentsLoader(contents).done(this.contentsRenderer);
+    },
+
     quitHandler: function() {
-      alert('quit!');
+      ipc.send('quit');
     },
 
     defaultHandler: function(action) {
-      alert('Welcome Electron Kitchen Sink');
+      if(!action) {
+        this.contentsLoader(DEFAULTCONTENTS).done(this.contentsRenderer);;
+      }
     }
   });
 });

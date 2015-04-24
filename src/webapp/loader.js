@@ -8,6 +8,8 @@ requirejs.config({
     'bootstrap': 'lib/js/bootstrap.min',
     'handlebars': 'lib/js/handlebars.min',
     'marked': 'lib/js/marked.min',
+    'highlight': 'lib/js/highlight',
+    'nprogress': 'lib/js/nprogress',
     'app': 'browser/app'
   },
 
