@@ -42,7 +42,13 @@ define([
     },
 
     contentsRenderer: function(doc) {
-      Backbone.$('.main')[0].innerHTML = Marked(doc);
+      var customRenderer = new Marked.Renderer();
+
+      customRenderer.link = function(href, title, text) {
+        return '<span class="glyphicon glyphicon-share">'+text+'</span>';
+      }
+
+      Backbone.$('.main')[0].innerHTML = Marked(doc, { renderer: customRenderer });
       Nprogress.done();
     },
 
