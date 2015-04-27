@@ -8,13 +8,16 @@ requirejs.config({
     'bootstrap': 'lib/js/bootstrap.min',
     'handlebars': 'lib/js/handlebars.min',
     'marked': 'lib/js/marked.min',
-    'highlight': 'lib/js/highlight',
+    'highlight': 'lib/js/highlight.pack',
     'nprogress': 'lib/js/nprogress',
     'app': 'browser/app'
   },
 
   shim: {
     'bootstrap': ['jquery'],
+    'highlight': {
+      exports: 'hljs'
+    },
     'app': {
       deps: ['jquery', 'backbone']
     }

@@ -1,8 +1,9 @@
 define([
   'handlebars',
+  'highlight',
   'lib/js/marked.min',
   'lib/js/nprogress'
-], function(Handlebars, Marked, Nprogress) {
+], function(Handlebars, Hljs, Marked, Nprogress) {
   var DEFAULTCONTENTS = 'synopsis';
   var ipc = require('ipc');
 
@@ -15,12 +16,13 @@ define([
     },
 
     initialize: function() {
-      // Marked.setOptions({
-      //   highlight: function (code) {
-      //     return Highlight.highlightAuto(code).value;
-      //   }
-      // });
       this.current = null;
+
+      Marked.setOptions({
+        highlight: function (code) {
+          return Hljs.highlightAuto(code).value;
+        }
+      });
 
       Backbone.history.start();
     },

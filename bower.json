@@ -19,7 +19,6 @@
     "requirejs": "~2.1.17",
     "handlebars": "~3.0.2",
     "marked": "~0.3.3",
-    "highlight": "~7.0.1",
     "nprogress": "~0.1.6"
   }
 }
