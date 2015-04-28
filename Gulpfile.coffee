@@ -54,16 +54,15 @@ gulp.task 'deploy-library-files', ->
         path.join(config.path.source.bower, 'handlebars/handlebars.min.js'),
         path.join(config.path.source.bower, 'marked/marked.min.js'),
         path.join(config.path.source.bower, 'nprogress/nprogress.js'),
-        path.join(config.path.source.libraries, 'highlight/highlight.pack.js')
+        path.join(config.path.source.bower, 'highlightjs/highlight.pack.js')
       ]
     .pipe gulp.dest config.path.target.library.js
 
   gulp.src [
         path.join(config.path.source.bower, 'bootstrap/dist/css/bootstrap.min.css'),
         path.join(config.path.source.bower, 'bootstrap/dist/css/bootstrap-theme.min.css'),
-        path.join(config.path.source.bower, 'highlight/src/styles/sunburst.css'),
         path.join(config.path.source.bower, 'nprogress/nprogress.css'),
-        path.join(config.path.source.libraries, 'highlight/styles/sunburst.css')
+        path.join(config.path.source.bower, 'highlightjs/styles/sunburst.css')
       ]
     .pipe gulp.dest config.path.target.library.css
 
