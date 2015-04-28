@@ -4,8 +4,27 @@
   <meta charset="utf-8">
   <meta name="description" content="Electron Kitchen Sink">
   <title>Frameless Window</title>
+  <style>
+    body {
+      -webkit-app-region: drag;
+    }
+
+    button {
+      -webkit-app-region: no-drag;
+    }
+  </style>
+  <script>
+    window.onload = function() {
+      var closeButton = document.getElementById('close');
+
+      closeButton.addEventListener('click', function() {
+        require('ipc').send('closeFrameless');
+      });
+    }
+  </script>
 </head>
 <body>
   <h1>Frameless Window</h1>
+  <button id="close">Close</button>
 </body>
 </html>

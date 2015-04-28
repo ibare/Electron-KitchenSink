@@ -10,6 +10,7 @@ var win = ...;  // window in which to show the dialog
 var dialog = require('dialog');
 console.log(dialog.showOpenDialog({ properties: [ 'openFile', 'openDirectory', 'multiSelections' ]}));
 ```
+[](tutorial://openFileDialog)
 
 **Note for OS X**: If you want to present dialogs as sheets, the only thing you have to do is to provide a `BrowserWindow` reference in the `browserWindow` parameter.
 
