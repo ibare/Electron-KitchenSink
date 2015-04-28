@@ -87,6 +87,8 @@ define([
         .always(function() {
           var commandControls = document.querySelectorAll('button[data-role="tutorial"]');
 
+          window.scrollTo(0, 0);
+
           _.each(commandControls, function(c) {
             c.addEventListener('click', function(event) {
               var ipc = require('ipc');
