@@ -1,8 +1,8 @@
 define([
   'handlebars',
   'highlight',
-  'lib/js/marked.min',
-  'lib/js/nprogress'
+  'marked',
+  'nprogress'
 ], function(Handlebars, Hljs, Marked, Nprogress) {
   var DEFAULTCONTENTS = 'synopsis';
   var ipc = require('ipc');

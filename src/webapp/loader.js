@@ -2,13 +2,13 @@ requirejs.config({
   baseUrl: './',
 
   paths: {
-    'jquery': 'lib/js/jquery.min',
+    'jquery': 'lib/js/jquery',
     'underscore': 'lib/js/underscore',
     'backbone': 'lib/js/backbone',
-    'bootstrap': 'lib/js/bootstrap.min',
-    'handlebars': 'lib/js/handlebars.min',
-    'marked': 'lib/js/marked.min',
-    'highlight': 'lib/js/highlight.pack',
+    'bootstrap': 'lib/js/bootstrap',
+    'handlebars': 'lib/js/handlebars',
+    'marked': 'lib/js/marked',
+    'highlight': 'lib/js/highlight',
     'nprogress': 'lib/js/nprogress',
     'app': 'browser/app'
   },

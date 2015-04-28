@@ -3,6 +3,7 @@ gulp    = require 'gulp'
 watch   = require 'gulp-watch'
 sass    = require 'gulp-sass'
 shell   = require 'gulp-shell'
+rename  = require 'gulp-rename'
 notify  = require 'gulp-notify'
 
 config =
@@ -38,6 +39,11 @@ fullpath =
     backend: path.join(config.path.source.backend, '**/*.js'),
     web: path.join(config.path.source.webapp, '**/*.js')
 
+utils =
+  clearFileName: (name) ->
+    match = /[\w\-]+((?=[\.\-]min)|(?=[\.\-]pack))/g.exec name
+    return if match is null then name else match[0]
+
 gulp.task 'compile-sass', ->
   gulp.src fullpath.sass
     .pipe sass style: 'compressed'
@@ -56,6 +62,8 @@ gulp.task 'deploy-library-files', ->
         path.join(config.path.source.bower, 'nprogress/nprogress.js'),
         path.join(config.path.source.bower, 'highlightjs/highlight.pack.js')
       ]
+    .pipe rename (path) ->
+      path.basename = utils.clearFileName path.basename
     .pipe gulp.dest config.path.target.library.js
 
   gulp.src [
@@ -64,6 +72,8 @@ gulp.task 'deploy-library-files', ->
         path.join(config.path.source.bower, 'nprogress/nprogress.css'),
         path.join(config.path.source.bower, 'highlightjs/styles/sunburst.css')
       ]
+    .pipe rename (path) ->
+      path.basename = utils.clearFileName path.basename
     .pipe gulp.dest config.path.target.library.css
 
   gulp.src path.join config.path.source.bower, 'bootstrap/dist/fonts/*.*'
