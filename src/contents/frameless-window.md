@@ -12,6 +12,7 @@ To create a frameless window, you only need to specify `frame` to `false` in
 var BrowserWindow = require('browser-window');
 var win = new BrowserWindow({ width: 800, height: 600, frame: false });
 ```
+[](tutorial://frameless)
 
 ## Transparent window
 
@@ -21,6 +22,7 @@ window transparent:
 ```javascript
 var win = new BrowserWindow({ transparent: true, frame: false });
 ```
+[](tutorial://transparent)
 
 ### Limitations
 

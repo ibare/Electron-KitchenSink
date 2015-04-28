@@ -42,3 +42,30 @@ ipc.on('quit', function(event, args) {
     }
   })
 });
+
+ipc.on('frameless', function(event, args) {
+  var framelessWindow = new BrowserWindow({
+    width: 500,
+    height: 500,
+    frame: false
+  });
+
+  framelessWindow.loadUrl('file://'+__dirname+'/tutorial/frameless.html');
+  framelessWindow.on('closed', function() {
+    framelessWindow = null;
+  });
+});
+
+ipc.on('transparent', function(event, args) {
+  var transparentWindow = new BrowserWindow({
+    width: 500,
+    height: 500,
+    transparent: true,
+    frame: false
+  });
+
+  transparentWindow.loadUrl('file://'+__dirname+'/tutorial/transparent.html');
+  transparentWindow.on('closed', function() {
+    transparentWindow = null;
+  });
+});

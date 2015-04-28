@@ -100,6 +100,7 @@ gulp.task 'deploy-webapp', ->
 gulp.task 'watch', ->
   gulp.watch fullpath.sass, -> gulp.start 'compile-sass'
   gulp.watch fullpath.html, -> gulp.start 'deploy-static-files'
+  gulp.watch fullpath.contents, -> gulp.start 'deploy-static-files'
   gulp.watch fullpath.app.backend, -> gulp.start 'deploy-backend'
   gulp.watch fullpath.app.web, -> gulp.start 'deploy-webapp'
 
