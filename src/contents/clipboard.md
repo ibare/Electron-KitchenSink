@@ -7,6 +7,7 @@ writing a string to clipboard:
 var clipboard = require('clipboard');
 clipboard.writeText('Example String');
 ```
+[](tutorial://writeClipboard)
 
 On X Window systems, there is also a selection clipboard, to manipulate in it
 you need to pass `selection` to each method:

@@ -47,3 +47,4 @@ ipc.on('quit', function(event, args) {
 ipc.on('frameless', tutorialRouter.onFrameless);
 ipc.on('transparent', tutorialRouter.onTransparent);
 ipc.on('openFileDialog', tutorialRouter.onOpenFileDialog);
+ipc.on('writeClipboard', tutorialRouter.onWriteClipboard);

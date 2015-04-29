@@ -39,10 +39,16 @@ module = module.exports = {
   },
 
   onOpenFileDialog: function(event, args) {
-    var ipc = require('ipc');
     var dialog = require('dialog');
     var files = dialog.showOpenDialog({
       properties: [ 'openFile', 'openDirectory', 'multiSelections' ]
     });
+  },
+
+  onWriteClipboard: function(event, args) {
+    var dialog = require('dialog');
+    var clipboard = require('clipboard');
+
+    clipboard.writeText('Example String');
   }
 };
