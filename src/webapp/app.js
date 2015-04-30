@@ -4,7 +4,7 @@ define([
   'marked',
   'nprogress'
 ], function(Handlebars, Hljs, Marked, Nprogress) {
-  var DEFAULTCONTENTS = 'synopsis';
+  var DEFAULTCONTENTS = 'quick-start';
   var ipc = require('ipc');
 
   return Backbone.Router.extend({
