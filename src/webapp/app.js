@@ -73,7 +73,7 @@ define([
         }
       }
 
-      Backbone.$('.main')[0].innerHTML = Marked(doc, { renderer: customRenderer });
+      Backbone.$('.markdown-view')[0].innerHTML = Marked(doc, { renderer: customRenderer });
       Nprogress.done();
     },
 
