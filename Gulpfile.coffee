@@ -1,10 +1,6 @@
 path    = require 'path'
 gulp    = require 'gulp'
-watch   = require 'gulp-watch'
-sass    = require 'gulp-sass'
-shell   = require 'gulp-shell'
-rename  = require 'gulp-rename'
-notify  = require 'gulp-notify'
+$       = require('gulp-load-plugins')()
 
 config =
   path:
@@ -46,7 +42,7 @@ utils =
 
 gulp.task 'compile-sass', ->
   gulp.src fullpath.sass
-    .pipe sass style: 'compressed'
+    .pipe $.sass style: 'compressed'
     .pipe gulp.dest path.join config.path.target.static.css
 
 gulp.task 'deploy-library-files', ->
@@ -62,7 +58,7 @@ gulp.task 'deploy-library-files', ->
         path.join(config.path.source.bower, 'nprogress/nprogress.js'),
         path.join(config.path.source.bower, 'highlightjs/highlight.pack.js')
       ]
-    .pipe rename (path) ->
+    .pipe $.rename (path) ->
       path.basename = utils.clearFileName path.basename
     .pipe gulp.dest config.path.target.library.js
 
@@ -72,7 +68,7 @@ gulp.task 'deploy-library-files', ->
         path.join(config.path.source.bower, 'nprogress/nprogress.css'),
         path.join(config.path.source.bower, 'highlightjs/styles/sunburst.css')
       ]
-    .pipe rename (path) ->
+    .pipe $.rename (path) ->
       path.basename = utils.clearFileName path.basename
     .pipe gulp.dest config.path.target.library.css
 
@@ -98,11 +94,11 @@ gulp.task 'deploy-webapp', ->
     .pipe gulp.dest config.path.target.webapp
 
 gulp.task 'watch', ->
-  gulp.watch fullpath.sass, -> gulp.start 'compile-sass'
-  gulp.watch fullpath.html, -> gulp.start 'deploy-static-files'
-  gulp.watch fullpath.contents, -> gulp.start 'deploy-static-files'
-  gulp.watch fullpath.app.backend, -> gulp.start 'deploy-backend'
-  gulp.watch fullpath.app.web, -> gulp.start 'deploy-webapp'
+  $.watch fullpath.sass, -> gulp.start 'compile-sass'
+  $.watch fullpath.html, -> gulp.start 'deploy-static-files'
+  $.watch fullpath.contents, -> gulp.start 'deploy-static-files'
+  $.watch fullpath.app.backend, -> gulp.start 'deploy-backend'
+  $.watch fullpath.app.web, -> gulp.start 'deploy-webapp'
 
 gulp.task 'build', ->
   gulp.start [
@@ -115,6 +111,6 @@ gulp.task 'build', ->
   ]
 
 gulp.task 'run', ->
-  gulp.start shell.task ['electron ' + path.join config.path.target.root]
+  gulp.start $.shell.task ['electron ' + path.join config.path.target.root]
 
 gulp.task 'default', ['build']
